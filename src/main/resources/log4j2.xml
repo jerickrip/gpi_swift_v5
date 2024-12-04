@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:sss}] [ %t ] [ %-5p] [%c{10}:%L] %m%n" />
+        </Console>
+        <RollingFile name="ServerRollingFile"
+                     fileName="C:\\plataforma\logs\gpiswift.log"
+                     filePattern="C:\\plataforma\logs\$${date:yyyy}/$${date:MM}/$${date:yyyy-MM-dd}/gpiswift-%d{yyyy-MM-dd-}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:sss}] [ %t ] [ %-5p] [%c{10}:%L] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="50 MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="ServerRollingFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,2 @@
+rootProject.name = 'gpiswift-v5'
+System.setProperty("sonar.gradle.skipCompile", "true")
