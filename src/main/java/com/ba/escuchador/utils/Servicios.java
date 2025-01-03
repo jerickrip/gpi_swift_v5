@@ -42,7 +42,8 @@ public class Servicios {
 			logger.info("Cantidad Confirmada " + parametros.get("confirmed_amount") ,Servicios.class);
 			logger.info("Cantidad Deducida " + parametros.get("charge_amount") ,Servicios.class);
 
-			String respAPI = StatusConfirmation(
+			String respAPI = StatusConfirmation(parametros);
+			/*String respAPI = StatusConfirmation(
 					parametros.get("uetr"),
 					bic,
 					parametros.get("instruction_identification"),
@@ -54,8 +55,8 @@ public class Servicios {
 					parametros.get("transaction_status"),
 					parametros.get("transaction_status_reason"),
 					parametros.get("business_service")
-			);
-            logger.info("Codigo de Respuesta API: {}", respAPI, Servicios.class);
+			);*/
+			logger.info("Codigo de Respuesta API: {}", respAPI, Servicios.class);
 
 			respuesta = new HashMap<String, String>();
 			respuesta.put("status", respAPI);
@@ -120,18 +121,18 @@ public class Servicios {
 		InputStream inputStream = null;
 		String[] propiedades = null;
 		try {
-			File connectionFile = ResourceUtils.getFile("classpath:escuchadorMQ.properties");
+			File connectionFile = ResourceUtils.getFile("classpath:miscUtil.properties");
 			inputStream = new FileInputStream(connectionFile.toString());
 			Properties properties = new Properties();
 			properties.load(inputStream);
-			String s_webServiceDbConfig = properties.getProperty("llavePropiedad");
+			String s_webServiceDbConfig = properties.getProperty(llavePropiedad);
 			StringTokenizer tokens = new StringTokenizer(s_webServiceDbConfig, "|");
 			int i = 0;
 			propiedades = new String[tokens.countTokens()];
 			while (tokens.hasMoreTokens()) {
 				String token = tokens.nextToken();
 				propiedades[i] = token;
-				logger.info(token, Servicios.class);
+				//logger.info(token, Servicios.class);
 				i++;
 			}
 		} catch (Exception e) {
@@ -146,5 +147,4 @@ public class Servicios {
 		}
 		return propiedades;
 	}
-
 }
