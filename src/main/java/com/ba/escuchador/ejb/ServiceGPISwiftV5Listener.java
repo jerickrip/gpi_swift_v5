@@ -61,7 +61,7 @@ public class ServiceGPISwiftV5Listener {
 
 		try {
 			if (msg instanceof JMSTextMessage message) {
-				logger.info("MessageId del mensaje : {}", message.getJMSCorrelationID());
+				logger.info("INICIO - MessageId del mensaje : {}", message.getJMSCorrelationID());
 				String converted = new String(message.getJMSCorrelationIDAsBytes(), StandardCharsets.UTF_8);
 				logger.info("MessageId del mensaje convertido : {}", converted);
 
@@ -158,15 +158,15 @@ public class ServiceGPISwiftV5Listener {
 					logger.error("RESPONSE: [{}]", xmlResponse);
 				}
 			}
-			}catch(Exception e){
-				logger.error("Error ", e);
-			}
-			try {
-				fin = System.currentTimeMillis();
-				logger.info("tiempo del servicio + envio: {} s", ((float) (fin - inicio) / 1000));
-			} catch (Exception ignored) {
-				logger.info("tiempo del servicio + envio: 0s");
-			}
+		}catch(Exception e){
+			logger.error("Error ", e);
+		}
+		try {
+			fin = System.currentTimeMillis();
+			logger.info("tiempo del servicio + envio: {} s", ((float) (fin - inicio) / 1000));
+		} catch (Exception ignored) {
+			logger.info("FIN. tiempo del servicio + envio: 0s \n");
+		}
 	}
 
 	/**
