@@ -212,6 +212,7 @@ public class ConexionAPI {
                 comision2 = (!extraAmounts[1].isBlank()|!extraAmounts[0].isEmpty())?extraAmounts[1].replaceAll("\\D+", ""):"0.0";
                 numero2 = (comision2.isEmpty()|comision2.equals("0.0"))?0.0:Double.parseDouble(comision2)/100;
                 comision2Dbl = Math.round(numero2 * Math.pow(10, 3)) / Math.pow(10, 3);
+                comision3Dbl = 0.0;
             }
 
             if(extraAmounts.length == 3){
@@ -234,6 +235,8 @@ public class ConexionAPI {
             comision1 = (!chargeAmount.isBlank()|!chargeAmount.isEmpty())?chargeAmount.replaceAll("\\D+", ""):"0.0";
             numero1 = (comision1.isEmpty()|comision1.equals("0.0"))?0.0:Double.parseDouble(comision1)/100;
             comision1Dbl = Math.round(numero1 * Math.pow(10, 3)) / Math.pow(10, 3);
+            comision2Dbl = 0.0;
+            comision3Dbl = 0.0;
 
             comision1Chr.setAmount(activeCurrencyAndAmount1.amount(String.valueOf((comision1Dbl))));
         }
